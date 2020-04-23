@@ -1,25 +1,27 @@
-const express = require('express');
+const express = require("express");
+const bodyParser = require("body-parser");
+
 const app = express();
 
-var bodyParser = require('body-parser');
-var jsonParser = bodyParser.json();
-app.use(jsonParser);
-
-// set up author routes
-const authorRouter = require('./routes/authorRouter');
+// use the body-parser middleware, which parses request bodies into req.body
+// support parsing of json
+app.use(bodyParser.json());
+// support parsing of urlencoded bodies (e.g. for forms)
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // GET home page
-app.get('/', (req, res) => {
-    res.send('<H1>Library System</H1>') });
+app.get("/", (req, res) => {
+  res.send("<H1>Library System</H1>");
+});
 
-// Handle author-management requests
+// handle author-management related requests
+// first import the author router
+const authorRouter = require("./routes/authorRouter");
+
 // the author routes are added onto the end of '/author-management'
-app.use('/author-management', authorRouter);
+app.use("/author-management", authorRouter);
 
-app.post(authors, jsonParser, function (req, res){
-    // add new author
-})
-
+// start app and listen for incoming requests on port 3000
 app.listen(3000, () => {
-    console.log('The library app is listening on port 3000!')
+  console.log("The library app is listening on port 3000!");
 });

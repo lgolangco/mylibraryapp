@@ -4,7 +4,7 @@ require('dotenv').config()
    CONNECTION_STRING = "mongodb+srv://laurengolangco:<password>@cluster0-kpojj.mongodb.net/test?retryWrites=true&w=majority";
    MONGO_URL =
    CONNECTION_STRING.replace("<password>",process.env.MONGO_PASSWORD);
-   mongoose.connect(MONGO_URL, || "mongodb://localhost/info30005", {
+   mongoose.connect(MONGO_URL, {
      useNewUrlParser: true,
      useCreateIndex: true,
      useUnifiedTopology: true,
